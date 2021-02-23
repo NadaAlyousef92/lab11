@@ -104,9 +104,7 @@ function Counter(votes) {
         if (votes.target.title === Imgarr[i].name) {
             Imgarr[i].Maxvotes++;
         }
-
     }
-
     if (votesSum >= Maxvotes) {
         Container.removeEventListener('click', Counter);
 
@@ -120,7 +118,7 @@ function clicks() {
 
     select.removeEventListener('click', clicks);
 
-    const list = document.getElementById('Imgresults');
+    const list = document.getElementById('result');
     const ul = document.createElement('ul');
     list.appendChild(ul);
     renderElement('h2', resultsEl, '');
@@ -144,7 +142,7 @@ Container.addEventListener('click', Counter);
 
 
 function createChart() {
-    const ctx = document.getElementById('myChart').getContext('2d');
+    const ctx = document.getElementById('votes-Chart').getContext('2d');
 
     const Imgstore = [];
     const Votes = [];
