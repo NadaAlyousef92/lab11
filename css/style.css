@@ -1,5 +1,5 @@
 nav {
-    background-color: rgb(143, 55, 121);
+    background-color: rgb(52, 148, 212);
     color: pink;
     font-size: 500px;
     font-family: cursive;
@@ -11,7 +11,7 @@ nav {
 }
 
 header {
-    background-color: rgb(143, 55, 121);
+    background-color: rgb(224, 165, 180);
     text-align: center;
 }
 
@@ -24,7 +24,7 @@ body {
 header nav,
 footer {
     padding: 20px;
-    background-color: rgb(236, 85, 178);
+    background-color: rgb(52, 148, 212);
     ;
     color: white;
     font-family: 'Times New Roman', Times, serif;
@@ -36,7 +36,7 @@ header img {
     border-radius: 59%;
     width: 200px;
     margin-top: -114px;
-    border: dashed 1px rgb(236, 85, 178);
+    border: dashed 1pxrgb(52, 148, 212);
 }
 
 a {
@@ -61,7 +61,7 @@ li {
 h2,
 h3 {
     font-family: 'Great Vibes', cursive;
-    color: rgb(236, 85, 178);
+    color: rgb(52, 148, 212);
     ;
     font-size: 52px;
 }
