@@ -2,11 +2,14 @@
 
 const Imgstore = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicom', 'water-can', 'wine-glass', 'usb'];
 
+function getRandomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 
-const leftImage = document.getElementById('left-image');
-const rightImage = document.getElementById('right-image');
-const centerImage = document.getElementById('center-image');
+const firstImage = document.getElementById('left-image');
+const secondImage = document.getElementById('center-image');
+const thirdImage = document.getElementById('right-image');
 
 
 const imagesSection = document.getElementById('imges-section');
@@ -16,11 +19,12 @@ const imagesSection = document.getElementById('imges-section');
 function ImgMall(name) {
     this.name = name;
     this.path = `./img/${name}.jpg`;
-    this.vote = 0;
+    this.votes = 0;
     this.views = 0;
 
 
     ImgMall.all.push(this);
+
 }
 
 
@@ -35,7 +39,9 @@ for (let i = 0; i < Imgstore.length; i++) {
     new ImgMall(Imgstore[i]);
 }
 
-
+let leftImage = getRandomNumber(0, ImgMall.all.length - 1);
+let centerImage = getRandomNumber(0, ImgMall.all.length - 1);
+let rightImage = getRandomNumber(0, ImgMall.all.length - 1);
 
 function render() {
 
@@ -54,47 +60,48 @@ function render() {
     }
 
 
-    const leftIndex = RandomNumber(0, ImgMall.all.length - 1);
-    leftImage.src = ImgMall.all[leftIndex].path;
-    leftImage.title = ImgMall.all[leftIndex].name;
-    leftImage.alt = ImgMall.all[leftIndex].name;
+    firstImage.src = ImgMall.all[leftImage].path;
+    firstImage.title = ImgMall.all[leftImage].name;
+    firstImage.alt = ImgMall.all[leftImage].name;
+    ImgMall.all[leftImage].views++;
 
-    const centerIndex = RandomNumber(0, ImgMall.all.length - 1);
-    centerImage.src = ImgMall.all[centerIndex].path;
-    centerImage.title = ImgMall.all[centerIndex].name;
-    centerImage.alt = ImgMall.all[centerIndex].name;
 
-    const rightIndex = RandomNumber(0, ImgMall.all.length - 1);
-    rightImage.src = ImgMall.all[rightIndex].path;
-    rightImage.title = ImgMall.all[rightIndex].name;
-    rightImage.alt = ImgMall.all[rightIndex].name;
+
+    secondImage.src = ImgMall.all[centerImage].path;
+    secondImage.title = ImgMall.all[centerImage].name;
+    secondImage.alt = ImgMall.all[centerImage].name;
 
     ImgMall.all[centerImage].views++;
+
+
+    thirdImage.src = ImgMall.all[rightImage].path;
+    thirdImage.title = ImgMall.all[rightImage].name;
+    thirdImage.alt = ImgMall.all[rightImage].name;
+
+    ImgMall.all[rightImage].views++;
 }
 
 imagesSection.addEventListener('click', handleClick);
 
-let Maxvotes = 0;
+let Maxvotes = 1;
 
 function handleClick(event) {
     if (Maxvotes <= 25) {
-        if (event.target.id === 'left-image') {
+        if (event.target.id === 'first-image') {
 
             ImgMall.all[leftImage].votes++;
 
             Maxvotes++;
 
-
-
             render();
 
-        } else if (event.target.id === 'center-image') {
+        } else if (event.target.id === 'second-image') {
             ImgMall.all[centerImage].votes++;
             Maxvotes++;
 
             render();
 
-        } else if (event.target.id === 'right-image') {
+        } else if (event.target.id === 'third-image') {
             ImgMall.all[rightImage].votes++;
             Maxvotes++;
 
@@ -127,6 +134,7 @@ function handleClick(event) {
 
 
     render();
+
 
     function Chart() {
         const ctx = document.getElementById('votes-chart').getContext('2d');
@@ -172,33 +180,5 @@ function handleClick(event) {
 
             options: {},
         });
-    }
-}
-
-
-//--------------------------------------------------------------
-
-
-
-if (listenpuase === 25) {
-    imagesSection.removeEventListener('click', ImgMall);
-
-
-
-    localStorage.setItem('votes/views', JASON.stringify(ImgMall));
-    storage();
-} else {
-    render();
-}
-
-
-function storage() {
-    if (localStorage.length > 0) {
-        ImgMall.Imgstore = JASON.parse(localStorage.getItem('votes / views'));
-        result();
-        listenpuase = 0;
-        imagesSection.addEventListener('click', ImgMall);
-
-
     }
 }
